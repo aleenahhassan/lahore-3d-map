@@ -1,0 +1,45 @@
+docs/lahore-3d-map.html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Lahore 3D Map</title>
+
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+  <style>
+    html, body, #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+
+  <script>
+    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNTMzNDNlMy1hOTQyLTQ0YTAtYmQ5Yi1kN2QzYThjMzQyYjYiLCJpZCI6Mzc0MDY1LCJpYXQiOjE3NjcxODc2MTZ9.EHiRkONnYOeMkxJmjsOgnL9cE0O_Zl9VT01uAvdRDN4
+";
+
+    const viewer = new Cesium.Viewer("cesiumContainer", {
+      terrain: Cesium.Terrain.fromWorldTerrain(),
+      timeline: false,
+      animation: false
+    });
+
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(74.3525, 31.5165, 1200),
+      orientation: {
+        pitch: Cesium.Math.toRadians(-45)
+      }
+    });
+
+    viewer.scene.primitives.add(Cesium.createOsmBuildings());
+  </script>
+</body>
+</html>
